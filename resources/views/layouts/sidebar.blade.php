@@ -2,8 +2,8 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            <a href="/" class="logo">
+                <img src="{{ asset('assets/img/examples/logo.svg') }}" alt="logo">
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -22,8 +22,8 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item">
-                    <a href="#dashboard">
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+                    <a href="/">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -40,8 +40,8 @@
                         <p>Layanan</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a href="#menu">
+                <li class="nav-item {{ Request::is('pelanggan*') ? 'active' : '' }}">
+                    <a href="{{ route('pelanggan.index') }}">
                         <i class="fas fa-user"></i>
                         <p>Pelanggan</p>
                     </a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pelanggan;
 
 class PelangganController extends Controller
 {
@@ -11,7 +12,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //
+        $pelanggan = Pelanggan::orderBy('created_at', 'desc')->simplePaginate(10);
+
+        return view('pages.pelanggan.index')->with('pelanggans', $pelanggan);
     }
 
     /**
@@ -19,7 +22,7 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.pelanggan.create');
     }
 
     /**
@@ -27,7 +30,26 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $this->validate($request, [
+                'nama' => 'required|unique:pelanggans,nama',
+                'alamat' => 'required',
+                'no_telp' => 'required'
+            ]);
+
+            $pelanggan = new Pelanggan();
+            $pelanggan->nama = $request->nama;
+            $pelanggan->alamat = $request->alamat;
+            $pelanggan->no_telp = $request->no_telp;
+
+            $pelanggan->save();
+
+            return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -43,7 +65,13 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pelanggan = Pelanggan::where('id_pelanggan', $id)->first();
+
+        $data = [
+            'customer' => $pelanggan
+        ];
+
+        return view('pages.pelanggan.edit', $data);
     }
 
     /**
@@ -51,7 +79,13 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Pelanggan::where('id_pelanggan', $id)->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+
+        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil diubah');
     }
 
     /**
@@ -59,6 +93,9 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelanggan = Pelanggan::where('id_pelanggan', $id);
+        $pelanggan->delete();
+
+        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil dihapus');
     }
 }

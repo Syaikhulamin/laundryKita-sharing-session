@@ -21,7 +21,7 @@
                     "Font Awesome 5 Brands",
                     "simple-line-icons",
                 ],
-                urls: ["assets/css/fonts.min.css"],
+                urls: ["{{ asset('assets/css/fonts.min.css') }}"],
             },
             active: function() {
                 sessionStorage.fonts = true;
@@ -49,9 +49,8 @@
                 <div class="main-header-logo">
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
-                            <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                                height="20" />
+                        <a href="/" class="logo">
+                            <img src="{{ asset('assets/img/examples/logo.svg') }}" alt="Logo" />
                         </a>
                         <div class="nav-toggle">
                             <button class="btn btn-toggle toggle-sidebar">
@@ -176,15 +175,14 @@
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
     <script>
-
         // Notify
 
-        @if(session('success'))
+        @if (session('success'))
             $.notify({
                 icon: 'icon-bell',
                 title: 'Laundry Kita',
                 message: '{{ session('success') }}',
-            },{
+            }, {
                 type: 'success',
                 placement: {
                     from: "bottom",
