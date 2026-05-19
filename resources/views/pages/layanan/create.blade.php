@@ -18,7 +18,7 @@
                     <input type="number" min="0" step="1000" class="form-control" name="harga_persatuan"
                         required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
             </form>
         </div>
     </div>

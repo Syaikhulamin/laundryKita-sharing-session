@@ -46,11 +46,10 @@
                         <p>Pelanggan</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a href="#pesanan">
+                <li class="nav-item {{ Request::is('transaksi*') ? 'active' : '' }}">
+                    <a href="{{ route('transaksi.index') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>Transaksi</p>
-                        <span class="badge badge-secondary">10</span>
                     </a>
                 </li>
                 {{-- <li class="nav-item">

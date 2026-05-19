@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_transaksi');
             $table->unsignedBigInteger('id_pelanggan')->nullable();
             $table->unsignedBigInteger('id_user')->nullable();
-            
+
             $table->date('tgl_masuk');
             $table->date('tgl_diambil');
             $table->string('status_bayar');

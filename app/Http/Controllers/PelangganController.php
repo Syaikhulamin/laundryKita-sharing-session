@@ -30,26 +30,22 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        try {
 
-            $this->validate($request, [
-                'nama' => 'required|unique:pelanggans,nama',
-                'alamat' => 'required',
-                'no_telp' => 'required'
-            ]);
+        $this->validate($request, [
+            'nama' => 'required|unique:pelanggans,nama',
+            'alamat' => 'required',
+            'no_telp' => 'required|numeric'
+        ]);
 
-            $pelanggan = new Pelanggan();
-            $pelanggan->nama = $request->nama;
-            $pelanggan->alamat = $request->alamat;
-            $pelanggan->no_telp = $request->no_telp;
+        $pelanggan = new Pelanggan();
+        $pelanggan->nama = $request->nama;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->no_telp = $request->no_telp;
 
-            $pelanggan->save();
+        $pelanggan->save();
 
-            return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan');
+        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan');
 
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
-        }
     }
 
     /**

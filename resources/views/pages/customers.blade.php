@@ -2,7 +2,7 @@
 @section('content')
     <div class="d-flex justify-content-between mb-4">
         <h4>Daftar Pelanggan</h4>
-        <a href="{{ route('customers.create') }}" class="btn btn-primary">Tambah</a>
+        <a href="{{ route('customers.create') }}" class="btn btn-sm btn-primary">Tambah</a>
     </div>
 
     <div class="card">
@@ -28,10 +28,10 @@
                                 <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                                     @method('DELETE')
-                                    @csrf   
+                                    @csrf
                                     <button type="submit"
-                                    onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
-                                    class="btn btn-danger">Hapus</button>
+                                        onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
+                                        class="btn btn-danger">Hapus</button>
                                 </form>
                             </td>
                         </tr>

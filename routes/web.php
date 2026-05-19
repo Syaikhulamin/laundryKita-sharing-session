@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
@@ -15,3 +16,4 @@ Route::post('/layanan/update/{id}', [LayananController::class, 'update'])->name(
 Route::post('/layanan/destroy/{id}', [LayananController::class, 'destroy'])->name('layanan.destroy');
 
 Route::resource('/pelanggan', PelangganController::class);
+Route::resource('/transaksi', TransaksiController::class);
